@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Data Analyst — Prompt Author Workbench</title>
+<link rel="stylesheet" href="styles.css"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<header>
+  <div class="brand"><span>📊</span><h1>Prompt Author Workbench</h1></div>
+  <div class="badge">Data Analysis · Prompt Engineering · LLM Evaluation</div>
+</header>
+
+<main>
+  <section class="hero">
+    <h2>Author · Test · Analyze · Improve LLM Prompts</h2>
+    <p>End-to-end workbench for prompt authors and data analysts — write prompts, run evaluations, visualize quality metrics, identify failure patterns.</p>
+  </section>
+
+  <div class="kpis">
+    <div class="kpi"><b id="totalPrompts">12</b><span>Prompts</span></div>
+    <div class="kpi"><b id="totalRuns">147</b><span>Test Runs</span></div>
+    <div class="kpi"><b id="avgQuality">87.4%</b><span>Avg Quality</span></div>
+    <div class="kpi"><b id="passRate">91.2%</b><span>Pass Rate</span></div>
+  </div>
+
+  <section class="card">
+    <h2>✍️ Prompt Author</h2>
+    <div class="grid-2">
+      <div>
+        <label>Prompt Name</label>
+        <input type="text" id="pname" placeholder="e.g. customer_support_classifier"/>
+        <label>Category</label>
+        <select id="pcat">
+          <option>Classification</option><option>Summarization</option><option>Extraction</option>
+          <option>Generation</option><option>QA</option><option>Translation</option>
+        </select>
+        <label>Prompt Template</label>
+        <textarea id="ptext" rows="6" placeholder="You are an expert {role}. Given the input {input}, produce {output_format}...">You are an expert customer support analyst. Classify the following customer message into one of these categories: [billing, technical, account, refund, other]. Respond with only the category name.
+
+Customer message: {message}
+Category:</textarea>
+      </div>
+      <div>
+        <label>Test Input</label>
+        <textarea id="ptest" rows="3" placeholder="Sample input to test...">I was charged twice for my subscription last month and I need a refund.</textarea>
+        <label>Expected Output</label>
+        <input type="text" id="pexpected" value="refund"/>
+        <label>Variables Detected</label>
+        <div id="vars" class="vars-box">{message}</div>
+        <div class="actions">
+          <button class="btn primary" onclick="runTest()">🚀 Run Test</button>
+          <button class="btn ghost" onclick="savePrompt()">💾 Save Prompt</button>
+        </div>
+        <div id="testResult" class="test-result" style="display:none"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>📈 Analytics Dashboard</h2>
+    <div class="charts">
+      <div class="chart-box"><h3>Quality Score Trend (30 days)</h3><canvas id="trendChart"></canvas></div>
+      <div class="chart-box"><h3>Quality by Category</h3><canvas id="catChart"></canvas></div>
+      <div class="chart-box"><h3>Failure Pattern Analysis</h3><canvas id="failChart"></canvas></div>
+      <div class="chart-box"><h3>Prompt Latency Distribution</h3><canvas id="latencyChart"></canvas></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>📋 Prompt Library</h2>
+    <div class="filters">
+      <input type="text" id="search" placeholder="🔍 Search prompts..." onkeyup="renderLibrary()"/>
+      <select id="catFilter" onchange="renderLibrary()">
+        <option value="">All Categories</option>
+        <option>Classification</option><option>Summarization</option><option>Extraction</option>
+        <option>Generation</option><option>QA</option><option>Translation</option>
+      </select>
+    </div>
+    <table class="lib-table" id="libTable"></table>
+  </section>
+
+  <section class="card">
+    <h2>🛠️ Data Analyst Skill Set</h2>
+    <div class="skills">
+      <div class="skill"><h3>🧠 Problem Solving</h3><p>Systematic breakdown of ambiguous LLM behavior into testable hypotheses.</p></div>
+      <div class="skill"><h3>📊 Data Analysis</h3><p>SQL · Pandas · statistical significance · A/B testing of prompts.</p></div>
+      <div class="skill"><h3>✍️ Prompt Engineering</h3><p>Few-shot, chain-of-thought, structured output, role-based prompting.</p></div>
+      <div class="skill"><h3>📈 Visualization</h3><p>Chart.js · Tableau · PowerBI · interactive dashboards.</p></div>
+      <div class="skill"><h3>🧪 Evaluation Design</h3><p>Rubric construction · inter-annotator agreement · golden datasets.</p></div>
+      <div class="skill"><h3>🔍 Failure Analysis</h3><p>Error taxonomy · regression detection · root-cause clustering.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer>© 2026 Prompt Author Workbench · Data-driven prompt engineering</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
